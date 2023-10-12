@@ -289,7 +289,13 @@ class SiteController extends Controller
             $studentinfo->save();
 
         
-    
+            $email = Yii::$app->mailer->compose()
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->params['supportEmail']])
+            ->setTo($_POST['Parentinfo']['email'])
+            ->setSubject('sample')
+            ->setHtmlBody('sample');
+            $email->send();
+
             return $this->goHome();
 
         }
